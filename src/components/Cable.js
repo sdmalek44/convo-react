@@ -3,7 +3,7 @@ import { ActionCable } from 'react-actioncable-provider';
 
 const Cable = ({ conversations, handleReceivedMessage }) => {
   return (
-    <Fragment>
+    <div>
       {conversations.map(conversation => {
         return (
           <ActionCable
@@ -13,7 +13,7 @@ const Cable = ({ conversations, handleReceivedMessage }) => {
           />
         );
       })}
-    </Fragment>
+    </div>
   )
 }
 

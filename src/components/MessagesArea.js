@@ -1,7 +1,7 @@
 import React from 'react';
 import NewMessageForm from './NewMessageForm';
 
-const MessageArea = ({ conversation: { id, title, messages } }) => {
+const MessagesArea = ({ conversation: { id, title, messages } }) => {
   return (
     <div className="messagesArea">
       <h2>{title}</h2>
