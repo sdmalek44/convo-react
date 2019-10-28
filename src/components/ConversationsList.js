@@ -17,6 +17,10 @@ class ConversationsList extends Component {
       .then(conversations => this.setState({ conversations }));
   };
 
+  handleClick = id => {
+    this.setState({ activeConversation: id });
+  };
+
   handleReceivedConversation = response => {
     const { conversation } = response;
 
@@ -49,7 +53,36 @@ class ConversationsList extends Component {
             handleReceivedMessage={this.handleReceivedMessage}
           />
         ) : null}
+        <h2>Conversations</h2>
+        <ul>{mapConversations(conversations, this.handleClick)}</ul>
+        <NewConversationForm />
+        {activeConversation ? (
+          <MessagesArea
+            conversation={findActiveConversation(
+              conversations,
+              activeConversation
+            )}
+          />
+        ) : null}
       </div>
     );
   };
 }
+
+export default ConversationsList;
+
+const findActiveConversation = (conversations, activeConversation) => {
+  return conversations.find(
+    conversation => conversation.id === activeConversation
+  )
+}
+
+const mapConversations = (conversations, handleClick) => {
+  return conversations.map(conversations => {
+    return (
+      <li key={conversation.id} onClick={() => handleClick(conversation.id)}>
+        {conversation.title}
+      </li>
+    );
+  });
+};
